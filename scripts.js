@@ -1,0 +1,1 @@
+"use strict";var e=document.querySelector("html"),t=document.querySelector(".popup__close_js");document.querySelector(".slider__button_js").addEventListener("click",function(){e.classList.add("popup-open")}),t.addEventListener("click",function(){e.classList.remove("popup-open")});
