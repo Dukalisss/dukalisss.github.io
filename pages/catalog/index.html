@@ -20,7 +20,7 @@
     <a href="/" class="header__logo-link" aria-label="Go to Home" title="Home">
         <picture class="header__logo">
             <source srcset="/static/images/logo-mobile.png, /static/images/logo-mobile-2x.png 2x"
-                media="(max-width:526px)">
+                media="(max-width:375px)">
             <source srcset="/static/images/logo-tablet.png, /static/images/logo-tablet-2x.png 2x"
                 media="(max-width:768px)">
             <img src="/static/images/logo.png" srcset="/static/images/logo.png, /static/images/logo-2x.png 2x"
@@ -54,39 +54,40 @@
         MENU
     </button>
     <button class="header__search" type="button">
-        <img src="/static/images/search.png" class="header__search-img" alt="search" aria-label="Go to Search" title="Search" width="17"
-            height="17">
+        <img src="/static/images/search.png" class="header__search-img" alt="search" aria-label="Go to Search"
+            title="Search" width="17" height="17">
     </button>
     <a href="/pages/contact-us" class="header__contact-us" aria-label="Go to Contact Us" title="Contact Us">Contact
         Us</a>
 
 
     <div class="mobile-header mobile-header_js mobile-header">
-      
-      
+
+
         <div class="mobile-header__content">
-                <div class="mobile-header__header">
-                   <a href="/" class="moblie-header__logo-link" aria-label="Go to Home" title="Home">
-            <picture class="mobile-header__logo">
-                <source srcset="/static/images/logo-mobile.png, /static/images/logo-mobile-2x.png 2x"
-                    media="(max-width:526px)">
-                <img src="/static/images/logo-tablet.png" srcset="/static/images/logo-tablet.png, /static/images/logo-tablet-2x.png 2x"
-                    alt="Site logo" width="62" height="32">
-            </picture>
-        </a>
-        <button class="mobile-header__close mobile-header__close_js">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M0.707105 0L0 0.707105L7.07111 7.77821L4.6869e-05 14.8493L0.707151 15.5564L7.77821 8.48532L14.8492 15.5563L15.5563 14.8492L8.48532 7.77821L15.5563 0.707178L14.8492 7.33696e-05L7.77821 7.07111L0.707105 0Z"
-                    fill="#1E0606" />
-            </svg>
-        </button>
-        <button class="mobile-header__search" type="button">
-            <img src="/static/images/search.png" class="mobile-header__search-img" alt="search" aria-label="Go to Search" title="Search" width="17"
-                height="17">
-        </button>
-    </div>
-    <div class="mobile-header__wrapper">
+            <div class="mobile-header__header">
+                <a href="/" class="moblie-header__logo-link" aria-label="Go to Home" title="Home">
+                    <picture class="mobile-header__logo">
+                        <source srcset="/static/images/logo-mobile.png, /static/images/logo-mobile-2x.png 2x"
+                            media="(max-width:526px)">
+                        <img src="/static/images/logo-tablet.png"
+                            srcset="/static/images/logo-tablet.png, /static/images/logo-tablet-2x.png 2x"
+                            alt="Site logo" width="62" height="32">
+                    </picture>
+                </a>
+                <button class="mobile-header__close mobile-header__close_js">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0.707105 0L0 0.707105L7.07111 7.77821L4.6869e-05 14.8493L0.707151 15.5564L7.77821 8.48532L14.8492 15.5563L15.5563 14.8492L8.48532 7.77821L15.5563 0.707178L14.8492 7.33696e-05L7.77821 7.07111L0.707105 0Z"
+                            fill="#1E0606" />
+                    </svg>
+                </button>
+                <button class="mobile-header__search" type="button">
+                    <img src="/static/images/search.png" class="mobile-header__search-img" alt="search"
+                        aria-label="Go to Search" title="Search" width="17" height="17">
+                </button>
+            </div>
+            <div class="mobile-header__wrapper">
                 <nav aria-label="Мобильная навигация по сайту" class="mobile-header__nav">
                     <ul class="mobile-header__list">
                         <li class="mobile-header__item">
@@ -116,7 +117,7 @@
                 </nav>
                 <a href="/pages/contact-us" class="mobile-header__contact-us" aria-label="Go to Contact Us"
                     title="Contact Us">Contact Us</a>
-        
+
             </div>
         </div>
     </div>
@@ -130,7 +131,7 @@
                     <a class="navigation__link" href="/" aria-label="Go to Home" title="Home">Home</a>
                 </li>
                 <li>
-                    <div class="navigation__link navigation__link_disabled" tabindex="1">Catalog</div>
+                    <a class="navigation__link navigation__link_disabled" tabindex="1">Catalog</a>
                 </li>
             </ul>
         </div>
@@ -139,11 +140,11 @@
 
         <article class="catalog__contect">
             <ul class="row">
-                <li class="col-6 col-md-4 col-xl-3 catalog-col-xl">
+                <li class="col-6 col-md-4 col-xl-3">
                     <div class="category-card">
     <div class="category-card__img-wrapper">
         <picture class="category-card__img">
-            <source srcset="/static/images/image-1-mobile.jpg, /static/images/image-1-mobile-2x.jpg 2x" media="(max-width:526px)">
+            <source srcset="/static/images/image-1-mobile.jpg, /static/images/image-1-mobile-2x.jpg 2x" media="(max-width:375px)">
             <source srcset="/static/images/image-1-tablet.jpg, /static/images/image-1-tablet-2x.jpg 2x" media="(max-width:768px)">
             <img src="/static/images/image-1.jpg" srcset="/static/images/image-1.jpg, /static/images/image-1-2x.jpg 2x" alt="APPAREL KIDS"
                 width="320" height="270">
@@ -154,11 +155,11 @@
     </a>
 </div>
                 </li>
-                <li class="col-6 col-md-4 col-xl-3 catalog-col-xl">
+                <li class="col-6 col-md-4 col-xl-3">
                     <div class="category-card">
     <div class="category-card__img-wrapper">
         <picture class="category-card__img">
-            <source srcset="/static/images/image-2-mobile.jpg, /static/images/image-2-mobile-2x.jpg 2x" media="(max-width:526px)">
+            <source srcset="/static/images/image-2-mobile.jpg, /static/images/image-2-mobile-2x.jpg 2x" media="(max-width:375px)">
             <source srcset="/static/images/image-2-tablet.jpg, /static/images/image-2-tablet-2x.jpg 2x" media="(max-width:768px)">
             <img src="/static/images/image-2.jpg" srcset="/static/images/image-2.jpg, /static/images/image-2-2x.jpg 2x" alt="HOLIDAY SHOP"
                 width="320" height="270">
@@ -169,11 +170,11 @@
     </a>
 </div>
                 </li>
-                <li class="col-6 col-md-4  col-xl-3 catalog-col-xl">
+                <li class="col-6 col-md-4  col-xl-3">
                     <div class="category-card">
     <div class="category-card__img-wrapper">
         <picture class="category-card__img">
-            <source srcset="/static/images/image-3-mobile.jpg, /static/images/image-3-mobile-2x.jpg 2x" media="(max-width:526px)">
+            <source srcset="/static/images/image-3-mobile.jpg, /static/images/image-3-mobile-2x.jpg 2x" media="(max-width:375px)">
             <source srcset="/static/images/image-3-tablet.jpg, /static/images/image-3-tablet-2x.jpg 2x" media="(max-width:768px)">
             <img src="/static/images/image-3.jpg" srcset="/static/images/image-3.jpg, /static/images/image-3-2x.jpg 2x" alt="TOYS"
                 width="320" height="270">
@@ -184,11 +185,11 @@
     </a>
 </div>
                 </li>
-                <li class="col-6 col-md-4 col-xl-3 catalog-col-xl">
+                <li class="col-6 col-md-4 col-xl-3">
                     <div class="category-card">
     <div class="category-card__img-wrapper">
         <picture class="category-card__img">
-            <source srcset="/static/images/image-4-mobile.jpg, /static/images/image-4-mobile-2x.jpg 2x" media="(max-width:526px)">
+            <source srcset="/static/images/image-4-mobile.jpg, /static/images/image-4-mobile-2x.jpg 2x" media="(max-width:375px)">
             <source srcset="/static/images/image-4-tablet.jpg, /static/images/image-4-tablet-2x.jpg 2x" media="(max-width:768px)">
             <img src="/static/images/image-4.jpg" srcset="/static/images/image-4.jpg, /static/images/image-4-2x.jpg 2x" alt="ACCESSORIES"
                 width="320" height="270">
@@ -199,11 +200,11 @@
     </a>
 </div>
                 </li>
-                <li class="col-6 col-md-4 col-xl-3 catalog-col-xl">
+                <li class="col-6 col-md-4 col-xl-3">
                     <div class="category-card">
     <div class="category-card__img-wrapper">
         <picture class="category-card__img">
-            <source srcset="/static/images/image-4-mobile.jpg, /static/images/image-4-mobile-2x.jpg 2x" media="(max-width:526px)">
+            <source srcset="/static/images/image-4-mobile.jpg, /static/images/image-4-mobile-2x.jpg 2x" media="(max-width:375px)">
             <source srcset="/static/images/image-4-tablet.jpg, /static/images/image-4-tablet-2x.jpg 2x" media="(max-width:768px)">
             <img src="/static/images/image-4.jpg" srcset="/static/images/image-4.jpg, /static/images/image-4-2x.jpg 2x" alt="ACCESSORIES"
                 width="320" height="270">
@@ -214,11 +215,11 @@
     </a>
 </div>
                 </li>
-                <li class="col-6 col-md-4 col-xl-3 catalog-col-xl">
+                <li class="col-6 col-md-4 col-xl-3">
                     <div class="category-card">
     <div class="category-card__img-wrapper">
         <picture class="category-card__img">
-            <source srcset="/static/images/image-4-mobile.jpg, /static/images/image-4-mobile-2x.jpg 2x" media="(max-width:526px)">
+            <source srcset="/static/images/image-4-mobile.jpg, /static/images/image-4-mobile-2x.jpg 2x" media="(max-width:375px)">
             <source srcset="/static/images/image-4-tablet.jpg, /static/images/image-4-tablet-2x.jpg 2x" media="(max-width:768px)">
             <img src="/static/images/image-4.jpg" srcset="/static/images/image-4.jpg, /static/images/image-4-2x.jpg 2x" alt="ACCESSORIES"
                 width="320" height="270">
@@ -235,17 +236,18 @@
     <section class="catalog__description description">
         <h2 class="description__title">Product Description</h2>
         <div class="description__text-content text-content">
-        <p>Interactive doll Zapf Creation Baby Born Sister can drink from a bottle and
-            almost really cry. You can even
-            bathe her, just like a little sister.</p>
-        <p>A toy with a height of 43 cm bends its knees, the head rotates, it can stand
-            upright. Such a doll will be an
-            excellent choice for a gift for a girl from 4 years old.</p>
-        <p>The set includes a miniature set of fashionable clothes, a hairbrush, a bottle
-            for water, a pair of hairpins
-            and elastic bands for hair, as well as two bracelets: one for the doll, the other for her young mistress.
-        </p>
-    </div>
+            <p>Interactive doll Zapf Creation Baby Born Sister can drink from a bottle and
+                almost really cry. You can even
+                bathe her, just like a little sister.</p>
+            <p>A toy with a height of 43 cm bends its knees, the head rotates, it can stand
+                upright. Such a doll will be an
+                excellent choice for a gift for a girl from 4 years old.</p>
+            <p>The set includes a miniature set of fashionable clothes, a hairbrush, a bottle
+                for water, a pair of hairpins
+                and elastic bands for hair, as well as two bracelets: one for the doll, the other for her young
+                mistress.
+            </p>
+        </div>
     </section>
     
 
@@ -336,6 +338,7 @@
  
     <div class="footer-bottom">       
         <div class="footer-bottom__content">
+            <div class="footer-bottom__rating-inner">
         <p class="footer-bottom__rating">Company Rating</p>
             <div class="rating">
                     <input class="rating__input" type="radio" name="rating" id="stars-5" value="5">
@@ -349,6 +352,7 @@
                     <input class="rating__input" type="radio" name="rating" id="stars-1" value="1">
                     <label class="rating__label" for="stars-1" aria-label="Give a rating of 1" title="Rating of 1"></label>
             </div>
+        </div>
             <div class="footer-bottom__inner">
             <p class="footer-bottom__copyright">Copyright © 2018 Dlk • Design Life Kids</p>
             <a href="/" class="footer-bottom__web-desing" aria-label="Go to Direct Line" title="Direct Line">
