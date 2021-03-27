@@ -6,7 +6,7 @@
 const form = document.querySelector('.form_js');
 const reset = document.querySelector('.reset_js');
 const result = document.querySelector('.result_js');
-const paginationLink = document.querySelector('.pagination__number_js');
+const paginationLink = document.querySelector('.number_js');
 const formSubmit = document.querySelector('.formSubmit_js');
 const buttonNext = document.querySelector('.buttonNext_js');
 const buttonPrev = document.querySelector('.buttonPrev_js');
@@ -33,7 +33,7 @@ form.addEventListener('submit', function submit(event) {
     }
     setParamsToURL(fullData);
 
-    result.innerHTML = preloaderCreater();       
+    result.innerHTML = preloaderCreaterblog();
     getPost(fullData, function callback(xhr) {
         const response = JSON.parse(xhr.response);
         if (response.success) {
@@ -63,8 +63,6 @@ form.addEventListener('submit', function submit(event) {
 });
 
 
-
-
 //Button Reset parametrs
 reset.addEventListener('click', function () {
     form.reset();
@@ -72,27 +70,39 @@ reset.addEventListener('click', function () {
     setParamsToURL(params);
 })
 
-
-
-
 buttonPrev.addEventListener('click', function () {
     if (fullData.page <= 0) {
+        buttonPrev.classList.add('pagination__button_disabled');
         return
     } else {
         console.log(fullData.page);
         fullData.page -= 1;
         formSubmit.click();
+        buttonPrev.classList.remove('pagination__button_disabled');
     }
-
 })
 buttonNext.addEventListener('click', function () {
     if (fullData.page >= links.length - 1) {
+        buttonNext.classList.add('pagination__button_disabled');
         return
+
     }
     fullData.page += 1;
     formSubmit.click();
 })
 
+
+function setActiveSlide() {
+    if (fullData.page <= 0) {
+        return;
+    }
+
+    setButtonState(buttonNext, true);
+    setButtonState(buttonPrev, true);
+    FullData.page === 0 && setButtonState(buttonPrev);
+    FullData.page === 0 && setButtonState(buttonNext);
+
+}
 
 
 function setParamsToURL(params) {
@@ -112,14 +122,11 @@ function setParamsToURL(params) {
     }
 }
 
-
-
 function getParamsFromURL() {
     const searchParams = new URL(window.location).searchParams;
     let params = {};
     if (searchParams.has('tags')) {
         params.tags = searchParams.getAll('tags');
-    
     }
     if (searchParams.has('views')) {
         params.views = searchParams.get('views');
@@ -140,20 +147,19 @@ function getParamsFromURL() {
         params.page = searchParams.get('page');
     }
     return params;
-
 }
 
-
-function getTags() {       
+function getTags() {
     let xhr = new XMLHttpRequest();
     const box = document.querySelector('.tagBox_js');
 
-    xhr.open('GET', `${SERVER_URL}/api/tags`);    box.innerHTML = preloaderCreater();      
+    xhr.open('GET', `${SERVER_URL}/api/tags`);
+    box.innerHTML = preloaderCreaterblog();
     xhr.send();
-    
+
     xhr.onload = function () {
         const response = JSON.parse(xhr.response);
-        
+
         if (response.success) {
             box.innerHTML = '';
             for (let tag of response.data) {
@@ -165,19 +171,18 @@ function getTags() {
     };
     xhr.onerror = function () {
         console.error('Error. Try again.');
-    };            
-  
-};   
+    };
+};
 
 //color checkbox 
 
 
 function tagsCreater(tag) {
     return `
-    <label class="colorCheckbox">
-        <input class="colorCheckbox__tag hidden hidden_focus" type="checkbox" checked="checked" name="tags" value="${tag.id}">
-        <span class="colorCheckbox__checkbox" style = "border-color: ${tag.color}">
-        <svg class="checkSVG" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <label class="tags-box">
+        <input class="tags-box__tag hidden hidden_focus" type="checkbox" checked="checked" name="tags" value="${tag.id}">
+        <span class="tags-box__checkbox" style = "border-color: ${tag.color}">
+        <svg class="tags-box__svg" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M2 6.75L5.91301 12.77C6.20128 13.2135 6.85836 13.1893 7.11327 12.7259L13.425 1.25" stroke="${tag.color}" stroke-width="2.5" stroke-linecap="round"/>
         </svg>
         </span>
@@ -234,45 +239,29 @@ function skipPost(page, limits) {
 
 }
 
-function preloaderCreater() {
-    return `<div class="loader"></div>`;
-}
-
 
 function postCreater(post) {
     return `<div class="card__box">
     <div class="card__inner-img">
 <picture class="card__img">
-<source srcset="${SERVER_URL + post.photo.desktopPhotoUrl}, ${SERVER_URL + post.photo.desktop2xPhotoUrl} 2x" media="(min-width: 1024px)" alt ="${post.title}">
-<source srcset="${SERVER_URL + post.photo.tabletPhotoUrl}, ${SERVER_URL + post.photo.tablet2xPhotoUrl} 2x" media="(min-width: 768px)" alt="${post.title}">
-<source srcset="${SERVER_URL + post.photo.mobilePhotoUrl}, ${SERVER_URL + post.photo.mobile2xPhotoUrl} 2x" media="(min-width: 320px)" alt="${post.title}">
-<img src="${SERVER_URL + post.photo.desktopPhotoUrl}" alt="${post.title}" width="320" height="236">     
+<source srcset="${SERVER_URL}${post.photo.mobilePhotoUrl}, ${SERVER_URL}${post.photo.mobile2xPhotoUrl}" media="(max-width: 640px)" alt="${post.title}">
+<source srcset="${SERVER_URL}${post.photo.tabletPhotoUrl}, ${SERVER_URL}${post.photo.tablet2xPhotoUrl}" media="(max-width: 1023px)" alt="${post.title}">
+<source srcset="${SERVER_URL}${post.photo.desktopPhotoUrl}, ${SERVER_URL}${post.photo.desktop2xPhotoUrl}" alt="${post.title}">
+<img src="${SERVER_URL}${post.photo.desktopPhotoUrl}" width="320" height="236" alt="${post.title}"/>
 </picture>
-
-
-
-<source srcset="/static/images/slide-mobile.jpg 360w, /static/images/slide-mobile-2x.jpg 560w"
-  media="(max-width:375px)" sizes="460px">
-<source srcset="/static/images/slide-tablet.jpg 648w, /static/images/slide-tablet-2x.jpg 1296w"
-  media="(max-width:768px)" sizes="648px">
-<source srcset="/static/images/slide.jpg 1000w, /static/images/slide-2x.jpg 2000w"
-  media="(max-width:1400px)" sizes="1000px">
-<img src="/static/images/slide.jpg"
-  srcset="/static/images/slide.jpg 1000w, /static/images/slide-2x.jpg 2000w" alt="slide" sizes="1000px">
-
 </div>
-    <div class="card__textBox">
-        <ul class="card__tagBox postTagBox_js">
+    <div class="card__inner-box">
+        <ul class="card__taglist Tag_js">
             ${makeTagsPost(post)}
         </ul>
-        <ul class="card__infoBox">
-            <li class="card__infoElem">
+        <ul class="card__inner-info">
+            <li class="card__infoitem">
                 <span class="card__infoText">${getDate(post.date)}</span>
             </li>
-            <li class="card__infoElem">
+            <li class="card__infoitem">
                 <span class="card__infoText">${post.views} views</span>
             </li>
-            <li class="card__infoElem">
+            <li class="card__infoitem">
                 <span class="card__infoText">${post.commentsCount} comments</span>
             </li>
         </ul>
@@ -335,15 +324,17 @@ function paginationCreate(response, paginationLink, data) {
     for (let i = 0; i < quantity; i++) {
         if (data.page === i) {
             paginationLink.innerHTML += `<a href="?page=${i}" class="pagination__num pagination__num_active link_js">${i + 1}</a>`
+            buttonPrev.classList.remove('pagination__button_disabled');
+            buttonNext.classList.remove('pagination__button_disabled');
         } else {
             paginationLink.innerHTML += `<a href="?page=${i}" class="pagination__num link_js">${i + 1}</a>`
+            buttonPrev.classList.remove('pagination__button_disabled');
+            buttonNext.classList.remove('pagination__button_disabled');
         }
 
 
     }
-
 }
-
 
 function viewsBetweens(views) {
     let viewsInterval = views.split('-');

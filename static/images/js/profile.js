@@ -31,7 +31,6 @@ function rerenderUser(userData) {
 
 function getUserDate() {
 
-
   if (!token || !userId) {
     return window.location = '/';
   }
@@ -39,34 +38,32 @@ function getUserDate() {
   fetchData({
     method: 'GET',
     url: `/api/users/${userId}`,
-  
 
   })
-    .then(res => { 
-      return res.json();  
+    .then(res => {
+      return res.json();
     })
     .then(res => {
-   
+
       if (res.success) {
         userData = res.data;
-
         photo.style.cssText = `background-image: url('${SERVER_URL + userData.photoUrl}');
         background-position: center;
         background-size: cover;`
         rerenderUser(userData);
-  
+
       } else {
-        throw res;   
+        throw res;
       }
 
     })
     .catch(err => {
-      console.error(err);   
+      console.error(err);
       return window.location = '/';
     })
 }
 
-//Open popup change data
+//Open popup profile
 (function () {
 
   changeDataOpen.addEventListener('click', function (e) {
@@ -95,7 +92,7 @@ function getUserDate() {
 
 })();
 
-//Open popup change password
+//Open popup password
 (function () {
 
   changePasswordOpen.addEventListener('click', function (e) {
@@ -119,13 +116,11 @@ function getUserDate() {
     }
   })
 
-
-
 })();
 
 changeData.addEventListener('submit', function (e) {
-  changeUserData(e); 
-  setTimeout(function(){
+  changeUserData(e);
+  setTimeout(function () {
     location.reload();
   }, 1000);
 })
@@ -194,15 +189,20 @@ function changeUserPassword(e) {
 
   isLoadingChangePassword = true;
 
-  // copipaste
+  // password form
   const body = getFormData(e.target, {}, type = 'json');
   let errors = validateDataPassword(body);
   removeArr.forEach(fn => fn());
   if (Object.keys(errors).length) {
-    removeArr = setFormError(changePassword, errors);
+    InvalidButtonpassword()
+    setFormError(changePassword, errors);
     isLoadingChangePassword = false;
     return
   }
+
+
+  loaderinner.innerHTML = preloaderCreater();
+
   fetchData({
     method: 'PUT',
     url: '/api/users',
@@ -212,14 +212,19 @@ function changeUserPassword(e) {
       'Content-Type': 'application/json;charset=utf-8',
     }
   })
+
     .then(res => res.json())
     .then(res => {
-
-      if (res.success) {       
-        userData = res.data;
-        rerenderUser(userData);
-        changePassword.classList.remove('popup_open');
-        isLoadingChangePassword = false;
+      ValidButtonpassword();
+      loaderinner.innerHTML = '';
+      setFormvalid(changePassword, body);
+      if (res.success) {
+        setTimeout(function () {
+          userData = res.data;
+          rerenderUser(userData);
+          changePassword.classList.remove('popup_open');
+          isLoadingChangePassword = false;
+        }, 1000);
       } else {
         throw res;
       }
@@ -233,6 +238,7 @@ function changeUserPassword(e) {
     })
 
 }
+
 
 
 function validateDataPassword(data, errors = {}) {
@@ -317,9 +323,9 @@ if (window.FileList && window.File) {
       const span = document.createElement('span');
       const name = file.name ? file.name : 'NOT SUPPORTED';
       span.textContent = `${name}`;
-      output.appendChild(span); 
+      output.appendChild(span);
     }
-  }); 
- 
+  });
+
 }
 

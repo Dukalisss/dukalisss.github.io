@@ -1,57 +1,129 @@
-
-
 const SERVER_URL = 'https://academy.directlinedev.com';
 const VERSION_API = '1.0.0';
-// Open close popup signIn js 
+// Open close popup
 
-const popUpFindSingIn = document.querySelector('.popupSignIn_js');
-const mobilepopUpFindSingIn = document.querySelector('.mobile-popupSignIn_js');
-const popupSignIn = document.querySelector('.popupSignInOpen_js');
-const mobilepopupSignIn = document.querySelector('.mobile-popupSignInOpen_js');
-const popUpRegister = document.querySelector('.popupRegister_js');
-const mobilepopUpRegister = document.querySelector('.mobile-popupRegister_js');
-const popupRegisterOpen = document.querySelector('.popupRegisterOpen_js');
-const mobilepopupRegisterOpen = document.querySelector('.mobile-popupRegisterOpen_js');
-const profileLink = document.querySelector('.profileLink_js');
-const mobileprofileLink = document.querySelector('.mobile-profileLink_js');
-const OutProfile = document.querySelector(".sing-out-button_js");
-const OutProfileMobile = document.querySelector(".mobile-sing-out-button_js");
+const SingInpopup = document.querySelector('.SignIn-popup_js');
+const mobileSingInpopup = document.querySelector('.mobile-SignIn-popup_js');
+const SignInpopup = document.querySelector('.SignInOpen-popup_js');
+const mobileSignInpopup = document.querySelector('.mobile-SignInOpen-popup_js');
+const registerpopup = document.querySelector('.Register-popup_js');
+const mobileregisterpopup = document.querySelector('.mobile-Register-popup_js');
+const RegisterOpenpopup = document.querySelector('.RegisterOpen-popup_js');
+const mobileRegisterOpenpopup = document.querySelector('.mobile-RegisterOpen-popup_js');
+const profile = document.querySelector('.profile_js');
+const mobileprofile = document.querySelector('.mobile-profile_js');
+const OutProfile = document.querySelector(".singout_js");
+const OutProfileMobile = document.querySelector(".mobile-singout_js");
 
 const registerForm = document.forms.register;
 const signIn = document.forms.signIn;
-const popupSendMessageOpen = document.querySelector('.popupSendMessageOpen_js');
-const sendMessageButton = document.querySelector('.sendMessageButton_js');
-const sendEmail = document.querySelector('.sendEmail_js');
-const sendMassageForm = document.querySelector('.sendMassageForm_js');
-const registerChecked = document.querySelector('.registerChecked_js');
+const MessageOpenpopup = document.querySelector('.MessageOpen-popup_js');
+const Messagegoodpopup = document.querySelector('.Messagegood-popup_js');
+const Messagebadpopup = document.querySelector('.Messagebad-popup_js');
+const MessageButton = document.querySelector('.MessageButton_js');
+const Emailsend = document.querySelector('.Emailsend_js');
+const MassageForm = document.querySelector('.MassageForm_js');
+const Massagegood = document.querySelector('.goodmessage_js');
+const Massagebad = document.querySelector('.badMessage_js');
+const registerCheck = document.querySelector('.registerCheck_js');
 const registerButton = document.querySelector('.registerButton_js');
-const sendButton = document.querySelector('.sendButton_js');
-const sendCheckbox = document.querySelector('.sendCheckbox_js');
+const Buttonsend = document.querySelector('.Buttonsend_js');
+const Checkboxsend = document.querySelector('.Checkboxsend_js');
 
-// rating
 
-const ratings = {
-  html: 85 ,
-  css: 55,
-  js: 5,
-  git: 15,
-  figma: 80,
+//buttons
+
+let buttonSingin = document.querySelector(".button-sing-in_js");
+let buttonreg = document.querySelector(".button-reg_js");
+let buttonmessage = document.querySelector(".button-message_js");
+let buttonpassword = document.querySelector(".button-password_js");
+
+function InvalidButtonSingIn() {
+  buttonSingin.classList.remove("button_good");
+  buttonSingin.classList.add("button_bad");
 }
 
-const starsTotal = 100;
-document.addEventListener('DOMContentLoaded', getRatings);
+function ValidButtonSingIn() {
+  buttonSingin.classList.remove("button_bad");
+  buttonSingin.classList.add("button_good");
+}
 
-function getRatings() {
-  for (let rating in ratings) {
+function InvalidButtonreg() {
+  buttonreg.classList.remove("button_good");
+  buttonreg.classList.add("button_bad");
+}
 
-    const starPercentage = (ratings[rating] / starsTotal) * 100;
+function ValidButtonreg() {
+  buttonreg.classList.remove("button_bad");
+  buttonreg.classList.add("button_good");
+}
 
-    const starPercentageRounded = `${Math.round(starPercentage / 1) * 1}%`;
+function InvalidButtonmessage() {
+  buttonmessage.classList.remove("button_good");
+  buttonmessage.classList.add("button_bad");
+}
 
-    document.querySelector(`.${rating} .skills__level-inner` ).style.width = starPercentageRounded;
+function ValidButtonmessage() {
+  buttonmessage.classList.remove("button_bad");
+  buttonmessage.classList.add("button_good");
+}
 
-    document.querySelector(`.${rating} .skills__value`)  .innerHTML = ratings[rating];
+function InvalidButtonpassword() {
+  buttonpassword.classList.remove("button_good");
+  buttonpassword.classList.add("button_bad");
+}
+
+function ValidButtonpassword() {
+  buttonpassword.classList.remove("button_bad");
+  buttonpassword.classList.add("button_good");
+}
+
+
+//token
+
+function updateToken(response) {
+  localStorage.setItem('token', response.token);
+  localStorage.setItem('userId', response.userId);
+}
+
+function headerUpdate() {
+  if (localStorage.getItem('token')) {
+    SingInpopup.classList.add('hidden');
+    mobileSingInpopup.classList.add('hidden');
+    registerpopup.classList.add('hidden');
+    mobileregisterpopup.classList.add('hidden');
+    profile.classList.remove('hidden');
+    mobileprofile.classList.remove('hidden');
+    OutProfile.classList.remove("hidden");
+    OutProfileMobile.classList.remove("hidden");
+  } else {
+    SingInpopup.classList.remove('hidden');
+    mobileSingInpopup.classList.remove('hidden');
+    registerpopup.classList.remove('hidden');
+    mobileregisterpopup.classList.remove('hidden');
+    profile.classList.add('hidden');
+    mobileprofile.classList.add('hidden');
+    OutProfile.classList.add("hidden");
+    OutProfileMobile.classList.add("hidden");
   }
+}
+
+// loader
+
+const loaderinner = document.querySelector(".loaderinner_js");
+
+function preloaderCreater() {
+  return `
+  <div class="loader-inner">
+  <div class="loader-inner__loader"></div>
+  </div>
+  `;
+}
+
+function preloaderCreaterblog() {
+  return `
+  <div class="loader-inner__loader"></div>
+  `;
 }
 
 //open popup login
@@ -59,14 +131,14 @@ function getRatings() {
 
   let lastFocus;
 
-  popUpFindSingIn.addEventListener('click', function () {
+  SingInpopup.addEventListener('click', function () {
 
     lastFocus = document.activeElement;
-    popupSignIn.classList.add('popup_open');
-    popupSignIn.querySelector('.popup__input').focus();
+    SignInpopup.classList.add('popup_open');
+    SignInpopup.querySelector('.popup__input').focus();
 
 
-    let close = popupSignIn.querySelector('.popup__close');
+    let close = SignInpopup.querySelector('.popup__close');
     close.addEventListener('click', exit);
 
     window.addEventListener('keydown', keyDownEcs);
@@ -80,7 +152,7 @@ function getRatings() {
     function exit() {
       close.removeEventListener('click', exit);
       window.removeEventListener('keydown', keyDownEcs);
-      popupSignIn.classList.remove('popup_open');
+      SignInpopup.classList.remove('popup_open');
       lastFocus.focus();
     }
   })
@@ -92,14 +164,14 @@ function getRatings() {
 
   let lastFocus;
 
-  mobilepopUpFindSingIn.addEventListener('click', function () {
+  mobileSingInpopup.addEventListener('click', function () {
 
     lastFocus = document.activeElement;
-    mobilepopupSignIn.classList.add('popup_open');
-    mobilepopupSignIn.querySelector('.popup__input').focus();
+    mobileSignInpopup.classList.add('popup_open');
+    mobileSignInpopup.querySelector('.popup__input').focus();
 
 
-    let close = mobilepopupSignIn.querySelector('.popup__close');
+    let close = mobileSignInpopup.querySelector('.popup__close');
     close.addEventListener('click', exit);
 
     window.addEventListener('keydown', keyDownEcs);
@@ -113,82 +185,12 @@ function getRatings() {
     function exit() {
       close.removeEventListener('click', exit);
       window.removeEventListener('keydown', keyDownEcs);
-      mobilepopupSignIn.classList.remove('popup_open');
+      mobileSignInpopup.classList.remove('popup_open');
       lastFocus.focus();
     }
   })
 })();
 
-
-// Open close popup Register
-(function () {
-
-
-  let lastFocus;
-
-  mobilepopUpRegister.addEventListener('click', function () {
-
-    lastFocus = document.activeElement;
-    mobilepopupRegisterOpen.classList.add('popup_open');
-    mobilepopupRegisterOpen.querySelector('.popup__input').focus();
-
-
-    let close = mobilepopupRegisterOpen.querySelector('.popup__close');
-
-    close.addEventListener('click', exit);
-
-    window.addEventListener('keydown', keyDownEcs);
-
-
-    function keyDownEcs(event) {
-      if (event.code === 'Escape') {
-        exit();
-      }
-    }
-
-    function exit() {
-      close.removeEventListener('click', exit);
-      window.removeEventListener('keydown', keyDownEcs);
-      mobilepopupRegisterOpen.classList.remove('popup_open');
-      lastFocus.focus();
-    }
-  })
-})();
-
-// Mobile Open close popup Register
-(function () {
-
-
-  let lastFocus;
-
-  popUpRegister.addEventListener('click', function () {
-
-    lastFocus = document.activeElement;
-    popupRegisterOpen.classList.add('popup_open');
-    popupRegisterOpen.querySelector('.popup__input').focus();
-
-
-    let close = popupRegisterOpen.querySelector('.popup__close');
-
-    close.addEventListener('click', exit);
-
-    window.addEventListener('keydown', keyDownEcs);
-
-
-    function keyDownEcs(event) {
-      if (event.code === 'Escape') {
-        exit();
-      }
-    }
-
-    function exit() {
-      close.removeEventListener('click', exit);
-      window.removeEventListener('keydown', keyDownEcs);
-      popupRegisterOpen.classList.remove('popup_open');
-      lastFocus.focus();
-    }
-  })
-})();
 
 //Register 
 (function () {
@@ -206,10 +208,14 @@ function getRatings() {
     let errors = validateData(data);
     removeArr.forEach(fn => fn());
     if (Object.keys(errors).length) {
-      removeArr = setFormError(registerForm, errors);
+      InvalidButtonreg()
+      setFormError(registerForm, errors);
       isLoadingRegister = false;
       return
     }
+
+    loaderinner.innerHTML = preloaderCreater();
+
     fetchData({
       method: 'POST',
       url: '/api/users',
@@ -222,142 +228,39 @@ function getRatings() {
         return res.json();
       })
       .then(res => {
+        setFormvalid(registerForm, data);
 
         if (res.success) {
-          alert('Succsess registration');
-          popupRegisterOpen.classList.remove('popup_open');
+          ValidButtonreg();
+          setTimeout(function () {
+            loaderinner.innerHTML = "";
+            alert('Успешная регистрация')
+            RegisterOpenpopup.classList.remove('popup_open');
+          }, 1000);
 
         } else {
           throw res;
         }
         isLoadingRegister = false;
       })
-      .catch(err => {
-        for (key in err.errors) {
-          setFormError(registerForm, err.errors);
-          isLoadingRegister = false;
-        }
-      })
-  })
 
+  })
 })();
 
-//login 
-(function () {
-
-  let isLoadingLogin = false;
-  let removeArr = [];
-
-  signIn.addEventListener('submit', function logIn(e) {
-    e.preventDefault();
-    if (isLoadingLogin) {
-      return
-    }
-    isLoadingLogin = true;
-    const data = getFormData(signIn);
-    let errors = validateDataLogin(data);
-    removeArr.forEach(fn => fn());
-    if (Object.keys(errors).length) {
-      removeArr = setFormError(signIn, errors);
-      isLoadingRegister = false;
-      return
-    }
-    fetchData({
-      method: 'POST',
-      url: '/api/users/login',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-
-    })
-      .then(res => res.json())
-      .then(res => {
-        if (res.success) {
-          alert('Пользователь успешно вошел, ID:\n' + res.data.userId)
-          updateToken(res.data);
-          headerUpdate();
-          popupSignIn.classList.remove('popup_open');
-          isLoadingLogin = false;
-        } else {
-          throw res;
-        }
-      })
-      .catch(err => {
-        for (key in err.errors) {
-          setFormError(signIn, err.errors);
-          isLoadingLogin = false;
-        }
-      })
-  })
-
-})();
-
-headerUpdate();
-
-
-//send message
-(function () {
-  sendMassageForm.addEventListener('submit', function (e) {
-    sendMessage(e);
-  })
-
-})();
-
-function sendMessage(event) {
-  event.preventDefault();
-  let isSending = false;
-  let removeArr = [];
-
-  if (isSending) {
-    return
-  }
-  isSending = false;
-  let data = getFormData(event.target);
-  let errors = validateSendMessage(data);
-  removeArr.forEach(fn => fn());
-  if (Object.keys(errors).length) {
-    removeArr = setFormError(event.target, errors);
-    isSending = false;
-    return
-  }
-  let items = {};
-  items.body = JSON.stringify(data);
-  items.to = '111@asdas.com'
-  fetch(SERVER_URL + '/api/emails', {
-    method: 'POST',
-    body: JSON.stringify(items),
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-    }
-
-  })
-    .then(res => res.json())
-    .then(res => {
-      if (res.success)
-        alert('Emeil was sending');
-      popupSendMessageOpen.classList.remove('popup_open');
-    }
-    )
-    .catch(() => {
-      console.error('Something was wrong. Try again');
-    })
-}
-
-// Open popup send Message 
+// Open close popup Register
 (function () {
 
 
   let lastFocus;
 
-  sendMessageButton.addEventListener('click', function () {
+  mobileregisterpopup.addEventListener('click', function () {
 
     lastFocus = document.activeElement;
-    popupSendMessageOpen.classList.add('popup_open');
-    popupSendMessageOpen.querySelector('.popup__input').focus();
+    mobileRegisterOpenpopup.classList.add('popup_open');
+    mobileRegisterOpenpopup.querySelector('.popup__input').focus();
 
 
-    let close = popupSendMessageOpen.querySelector('.popup__close');
+    let close = mobileRegisterOpenpopup.querySelector('.popup__close');
 
     close.addEventListener('click', exit);
 
@@ -373,11 +276,93 @@ function sendMessage(event) {
     function exit() {
       close.removeEventListener('click', exit);
       window.removeEventListener('keydown', keyDownEcs);
-      popupSendMessageOpen.classList.remove('popup_open');
+      mobileRegisterOpenpopup.classList.remove('popup_open');
       lastFocus.focus();
     }
   })
 })();
+
+// Mobile Open close popup Register
+(function () {
+
+  let lastFocus;
+
+  registerpopup.addEventListener('click', function () {
+
+    lastFocus = document.activeElement;
+    RegisterOpenpopup.classList.add('popup_open');
+    RegisterOpenpopup.querySelector('.popup__input').focus();
+
+
+    let close = RegisterOpenpopup.querySelector('.popup__close');
+
+    close.addEventListener('click', exit);
+
+    window.addEventListener('keydown', keyDownEcs);
+
+
+    function keyDownEcs(event) {
+      if (event.code === 'Escape') {
+        exit();
+      }
+    }
+
+    function exit() {
+      close.removeEventListener('click', exit);
+      window.removeEventListener('keydown', keyDownEcs);
+      RegisterOpenpopup.classList.remove('popup_open');
+      lastFocus.focus();
+    }
+  })
+})();
+
+
+//active page
+
+let pageId = document.querySelector("[data-id-page]").getAttribute("data-id-page"),
+  navItem = document.querySelector(`[data-id-nav=${pageId}]`);
+
+if (pageId == navItem.getAttribute("data-id-nav")) {
+  navItem.classList.add("header__link_active");
+}
+
+//active page mobile
+
+let pageIdMobile = document.querySelector("[data-id-page]").getAttribute("data-id-page"),
+  navItemMobile = document.querySelector(`[m-data-id-nav=${pageIdMobile}]`);
+
+if (pageIdMobile == navItemMobile.getAttribute("m-data-id-nav")) {
+  navItemMobile.classList.add("mobile-header__link_active");
+}
+
+//mobile-menu
+
+var mobileHeader = document.querySelector(".mobile-header_js");
+var headerMobileButton = document.querySelector(".header__mobile-button_js");
+var mobileCloseButton = document.querySelector(".mobile-header__close-button_js");
+
+headerMobileButton.addEventListener("click", function () {
+  mobileHeader.classList.add("mobile-header_open");
+});
+
+mobileCloseButton.addEventListener("click", function () {
+  mobileHeader.classList.remove("mobile-header_open");
+});
+
+/* Sing out profile */
+
+let singOutProfile = document.querySelector(".singout_js");
+let singOutProfileMobile = document.querySelector(".mobile-singout_js");
+
+singOutProfile.addEventListener("click", function () {
+  localStorage.removeItem("token");
+  window.location.pathname = "/index.html";
+});
+
+singOutProfileMobile.addEventListener("click", function () {
+  localStorage.removeItem("token");
+  window.location.pathname = "/index.html";
+});
 
 
 //Validation
@@ -432,13 +417,17 @@ function checkEmail(email) {
   return email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
 }
 
+function checkphone(phone) {
+  return phone.match(/^(\s*)?(\+)?([-_():=+]?\d[- _():=+]?){10,14}(\s*)?$/);
+}
+
 function validateSendMessage(data, errors = {}) {
 
   if (!checkEmail(data.email)) {
     errors.email = 'Please enter a valid email address (your entry is not in the format "somebody@example.com")';
   }
 
-  if (!data.phone) {
+  if (!checkphone(data.phone)) {
     errors.phone = 'This field is required';
 
   }
@@ -450,6 +439,8 @@ function validateSendMessage(data, errors = {}) {
   }
   return errors;
 }
+
+
 
 function getFormData(form, data = {}, type = 'json') {
   if (type === 'json') {
@@ -478,16 +469,15 @@ function getFormData(form, data = {}, type = 'json') {
           break;
       }
     }
-    let textareas = form.querySelectorAll('textarea');
-    for (let textarea of textareas) {
-      data[textarea.name] = textarea.value;
-    }
+
     return data;
   } else {
     return new FormData(form);
   }
 
 }
+
+//invalid form
 
 function setInvalid(input) {
   function handl() {
@@ -517,7 +507,6 @@ function giveInputFeedback(input, error) {
 function setFormError(form, errors) {
   let removeArr = [];
   let inputs = form.querySelectorAll('input');
-  let textareas = form.querySelectorAll('textarea');
 
   for (let input of inputs) {
     if (errors[input.name]) {
@@ -527,15 +516,147 @@ function setFormError(form, errors) {
     }
   }
 
-  for (let textarea of textareas) {
-    if (errors[textarea.name]) {
-      const remove3 = setInvalid(textarea);
-      const remove4 = giveInputFeedback(input, errors[textarea.name]);
-      removeArr.push(remove3, remove4);
-    }
-  }
+
   return removeArr;
 }
+
+
+// valid form
+
+function setvalid(input) {
+  function handll() {
+    input.removeEventListener('input', handll);
+    input.classList.remove("validInput");
+  }
+  input.classList.add("validInput");
+  input.addEventListener('input', handll);
+  return handll;
+}
+
+function giveInputFeedbackk(input) {
+  function handll() {
+    message.remove();
+    input.removeEventListener('input', handll);
+  }
+
+  input.classList.add("validInput");
+  let message = document.createElement('div');
+  message.classList.add("valid-feedback");
+  verifiedMessageInputCreate(input);
+  input.insertAdjacentElement("afterend", message);
+
+  input.addEventListener('input', handll);
+  return handll;
+}
+
+function setFormvalid(form, errors) {
+  let removeArr = [];
+  let inputs = form.querySelectorAll('input');
+
+  for (let input of inputs) {
+    if (errors[input.name]) {
+      const remove1 = setvalid(input);
+      const remove2 = giveInputFeedbackk(input, errors[input.name]);
+      removeArr.push(remove1, remove2);
+    }
+  }
+
+  return removeArr;
+}
+
+
+function verifiedMessageInputCreate(input) {
+  let message = document.createElement("div");
+  message.classList.add("valid-feedback");
+  message.innerText = 'All right';
+
+  let nextMessage = input.nextElementSibling;
+  if (nextMessage != null) {
+    return
+  }
+
+  input.insertAdjacentElement("afterend", message);
+  input.addEventListener("input", function handll(event) {
+    message.remove();
+    input.removeEventListener("input", handll);
+  })
+}
+
+
+//login 
+
+(function () {
+
+  let isLoadingLogin = false;
+  let removeArr = [];
+
+  signIn.addEventListener('submit', function logIn(e) {
+    e.preventDefault();
+    if (isLoadingLogin) {
+      return
+    }
+    isLoadingLogin = true;
+
+    const data = getFormData(signIn);
+    let errors = validateDataLogin(data);
+    removeArr.forEach(fn => fn());
+    if (Object.keys(errors).length) {
+      InvalidButtonSingIn();
+      errors.email = 'This combination, mail and password were not found!';
+      setFormError(signIn, errors);
+      isLoadingRegister = false;
+      isLoadingLogin = false;
+      return
+    }
+
+    loaderinner.innerHTML = preloaderCreater();
+
+    fetchData({
+      method: 'POST',
+      url: '/api/users/login',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        ValidButtonSingIn();
+
+        if (res.success) {
+          setFormvalid(signIn, data);
+          loaderinner.innerHTML = '';
+          setTimeout(function () {
+            alert('Пользователь успешно вошел, ID:\n' + res.data.userId)
+            updateToken(res.data);
+            headerUpdate();
+            SignInpopup.classList.remove('popup_open');
+            isLoadingLogin = false;
+            isLoadingRegister = false;
+
+          }, 1000);
+
+        } else {
+          throw errors;
+        }
+      })
+
+      .catch(function (errors) {
+        loaderinner.innerHTML = '';
+        InvalidButtonSingIn();
+        errors.email = 'This combination, mail and password were not found!';
+        removeArr = setFormError(signIn, errors);
+        isLoadingRegister = false;
+        isLoadingLogin = false;
+      });
+
+  })
+
+})();
+
+headerUpdate();
+
+//fetch
 
 function fetchData({ method = 'GET', url = '', body = null, headers = {} }) {
   return fetch(SERVER_URL + url, {
@@ -545,33 +666,7 @@ function fetchData({ method = 'GET', url = '', body = null, headers = {} }) {
   })
 }
 
-function updateToken(response) {
-  localStorage.setItem('token', response.token);
-  localStorage.setItem('userId', response.userId);
-}
-
-
-function headerUpdate() {
-  if (localStorage.getItem('token')) {
-    popUpFindSingIn.classList.add('hidden');
-    mobilepopUpFindSingIn.classList.add('hidden');
-    popUpRegister.classList.add('hidden');
-    mobilepopUpRegister.classList.add('hidden');
-    profileLink.classList.remove('hidden');
-    mobileprofileLink.classList.remove('hidden');
-    OutProfile.classList.remove("hidden");
-    OutProfileMobile.classList.remove("hidden");
-  } else {
-    popUpFindSingIn.classList.remove('hidden');
-    mobilepopUpFindSingIn.classList.remove('hidden');
-    popUpRegister.classList.remove('hidden');
-    mobilepopUpRegister.classList.remove('hidden');
-    profileLink.classList.add('hidden');
-    mobileprofileLink.classList.add('hidden');
-    OutProfile.classList.add("hidden");
-    OutProfileMobile.classList.add("hidden");
-  }
-}
+//checkbox
 
 function setValueToForm(form, data) {
   let inputs = form.querySelectorAll('input');
@@ -594,14 +689,9 @@ function setValueToForm(form, data) {
         break;
     }
   }
-  let textareas = form.querySelectorAll('textarea');
-  for (let textarea of textareas) {
-    if (data[textarea.name])
-      textarea.value = data[textarea.name];
-  }
+
   return data;
 }
-
 
 function isDisabled(elem, button) {
   if (elem.checked) {
@@ -616,32 +706,371 @@ function isDisabled(elem, button) {
 
 (function () {
 
-  registerChecked.addEventListener('click', function () {
-    isDisabled(registerChecked, registerButton);
+  registerCheck.addEventListener('click', function () {
+    isDisabled(registerCheck, registerButton);
   })
 
 })();
 
 (function () {
 
-  sendCheckbox.addEventListener('click', function () {
-    isDisabled(sendCheckbox, sendButton);
+  Checkboxsend.addEventListener('click', function () {
+    isDisabled(Checkboxsend, Buttonsend);
   })
 
 })();
 
+// Open popup send Message 
+(function () {
 
-/* Sing out profile */
+  let lastFocus;
 
-let singOutProfile = document.querySelector(".sing-out-button_js");
-let singOutProfileMobile = document.querySelector(".mobile-sing-out-button_js");
+  MessageButton.addEventListener('click', function () {
 
-singOutProfile.addEventListener("click", function(){
-  localStorage.removeItem("token");
-  window.location.pathname = "/index.html";
+    lastFocus = document.activeElement;
+    MessageOpenpopup.classList.add('popup_open');
+    MessageOpenpopup.querySelector('.popup__input').focus();
+
+
+    let close = MessageOpenpopup.querySelector('.popup__close');
+
+    close.addEventListener('click', exit);
+
+    window.addEventListener('keydown', keyDownEcs);
+
+
+    function keyDownEcs(event) {
+      if (event.code === 'Escape') {
+        exit();
+      }
+    }
+
+    function exit() {
+      close.removeEventListener('click', exit);
+      window.removeEventListener('keydown', keyDownEcs);
+      MessageOpenpopup.classList.remove('popup_open');
+      lastFocus.focus();
+    }
+  })
+})();
+
+//slider
+
+function slider(selectorStr) {
+  const selector = document.querySelector(selectorStr);
+  const wrapper = selector.querySelector(".slider__wrapper");
+  const innerWrapper = selector.querySelector(".slider__inner-wrapper");
+  const pagination = selector.querySelector(".slider__pagination");
+  const buttonBack = selector.querySelector(".slider__button_back");
+  const buttonNext = selector.querySelector(".slider__button_next");
+  const slides = selector.querySelectorAll(".slider_slide");
+
+  let slideWidth = 0;
+
+  let maxSlideIndex = innerWrapper.childElementCount - 1;
+  let timerId = null;
+
+  let activeSlide = +localStorage.getItem('activeSlide') || 0;
+  let dots = [];
+  initDots();
+  setButtonState(buttonBack);
+
+  function initSlideWidth() {
+    slideWidth = wrapper.offsetWidth;
+    for (let slide of slides) {
+      slide.style.width = `${slideWidth}px`;
+    }
+  }
+  initSlideWidth();
+
+  function setButtonState(button, state = false) {
+    if (state) {
+      button.removeAttribute('disabled');
+    } else {
+      button.setAttribute('disabled', '');
+    }
+  }
+
+  function setActiveSlide(index, withAnimation = true) {
+    if (index < 0 || index > maxSlideIndex) {
+      return;
+    }
+    clearTimeout(timerId);
+    if (withAnimation) {
+      innerWrapper.style.transition = 'transform 500ms';
+      timerId = setTimeout(() => {
+        innerWrapper.style.transition = '';
+      }, 500);
+    }
+    setButtonState(buttonNext, true);
+    setButtonState(buttonBack, true);
+    index === 0 && setButtonState(buttonBack);
+    index === maxSlideIndex && setButtonState(buttonNext);
+    innerWrapper.style.transform = `translateX(${index * slideWidth * (-1)}px)`;
+    dots[activeSlide].classList.remove('slider__dot_active');
+    activeSlide = index;
+    dots[activeSlide].classList.add('slider__dot_active');
+    localStorage.setItem('activeSlide', activeSlide);
+  }
+
+  buttonNext.addEventListener('click', function () {
+    setActiveSlide(activeSlide + 1);
+  });
+
+  buttonBack.addEventListener('click', function () {
+    setActiveSlide(activeSlide - 1);
+  });
+
+  window.addEventListener('resize', function () {
+    initSlideWidth();
+    setActiveSlide(activeSlide, false);
+  });
+
+  let isTouch = false;
+  let startX = 0;
+  let endX = 0;
+  wrapper.addEventListener('touchstart', function (e) {
+    if (isTouch) return;
+    isTouch = true;
+    startX = e.touches[0].pageX;
+  });
+
+  wrapper.addEventListener('touchmove', function (e) {
+    if (!isTouch) return;
+    endX = e.touches[0].pageX;
+  });
+
+  wrapper.addEventListener('touchend', function (e) {
+    if (!isTouch) return;
+    isTouch = false;
+    if (Math.abs(startX - endX) < 50) {
+      return;
+    }
+    if (startX - endX < 0) {
+      setActiveSlide(activeSlide - 1);
+    }
+
+    if (startX - endX > 0) {
+      setActiveSlide(activeSlide + 1);
+    }
+  });
+
+  function initDots() {
+    for (let i = 0; i < maxSlideIndex + 1; i++) {
+      let dot = document.createElement('button');
+      dot.classList.add('slider__dot');
+      if (i === activeSlide) {
+        dot.classList.add('slider__dot_active');
+      }
+      dots.push(dot);
+      dot.addEventListener('click', function () {
+        setActiveSlide(i);
+      })
+      pagination.insertAdjacentElement('beforeend', dot);
+    }
+  }
+
+  setActiveSlide(activeSlide, false);
+
+  return {
+    setActiveSlide,
+    next: () => setActiveSlide(activeSlide + 1),
+    prev: () => setActiveSlide(activeSlide - 1),
+  }
+}
+
+const mySlider = slider('.slider');
+
+
+// swiper
+
+const swiper = new Swiper('.swiper-container', {
+  direction: 'horizontal',
+  loop: true,
+
+  navigation: {
+    color: '#000',
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
 });
 
-singOutProfileMobile.addEventListener("click", function(){
-  localStorage.removeItem("token");
-  window.location.pathname = "/index.html";
-});
+// rating
+
+const ratings = {
+  html: 85,
+  css: 55,
+  js: 5,
+  git: 15,
+  figma: 80,
+}
+
+const starsTotal = 100;
+document.addEventListener('DOMContentLoaded', getRatings);
+
+function getRatings() {
+  for (let rating in ratings) {
+
+    const starPercentage = (ratings[rating] / starsTotal) * 100;
+
+    const starPercentageRounded = `${Math.round(starPercentage / 1) * 1}%`;
+
+    document.querySelector(`.${rating} .skills__level-inner`).style.width = starPercentageRounded;
+
+    document.querySelector(`.${rating} .skills__value`).innerHTML = ratings[rating];
+  }
+};
+
+//send message
+(function () {
+  MassageForm.addEventListener('submit', function (e) {
+    sendMessage(e);
+  })
+
+})();
+
+function sendMessage(event) {
+  event.preventDefault();
+  let isSending = false;
+  let removeArr = [];
+
+  if (isSending) {
+    return
+  }
+  isSending = false;
+  let data = getFormData(event.target);
+  let errors = validateSendMessage(data);
+  removeArr.forEach(fn => fn());
+  if (Object.keys(errors).length) {
+    InvalidButtonmessage();
+    setFormError(event.target, errors);
+    isSending = false;
+    return
+  }
+  let items = {};
+  items.body = JSON.stringify(data);
+  items.to = '111@asdas.com'
+
+  loaderinner.innerHTML = preloaderCreater();
+
+  fetch(SERVER_URL + '/api/emails', {
+    method: 'POST',
+    body: JSON.stringify(items),
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    }
+
+  })
+
+    .then(res => res.json())
+    .then(res => {
+      setFormvalid(event.target, data);
+
+      if (res.success)
+        ValidButtonmessage();
+      if (res.success)
+        loaderinner.innerHTML = "";
+      setTimeout(function () {
+        loaderinner.innerHTML = "";
+        MessageOpenpopup.classList.remove('popup_open');
+        Massagegood.classList.add('popup_open');
+      }, 1000);
+    }
+    )
+    .catch(err => {
+      loaderinner.innerHTML = "";
+      MessageOpenpopup.classList.remove('popup_open');
+      Massagebad.classList.add('popup_open');
+    })
+}
+
+
+// Open popup Message good
+(function () {
+
+  let lastFocus;
+
+  MessageButton.addEventListener('click', function () {
+
+    lastFocus = document.activeElement;
+
+    let close = Massagegood.querySelector('.popup__close');
+
+    close.addEventListener('click', exit);
+
+    window.addEventListener('keydown', keyDownEcs);
+
+
+    function keyDownEcs(event) {
+      if (event.code === 'Escape') {
+        exit();
+      }
+    }
+
+    function exit() {
+      close.removeEventListener('click', exit);
+      window.removeEventListener('keydown', keyDownEcs);
+      Massagegood.classList.remove('popup_open');
+      lastFocus.focus();
+    }
+  })
+})();
+
+
+// Open popup Message bad
+(function () {
+
+  let lastFocus;
+
+  MessageButton.addEventListener('click', function () {
+
+    lastFocus = document.activeElement;
+
+    let close = Massagebad.querySelector('.popup__close');
+
+    close.addEventListener('click', exit);
+
+    window.addEventListener('keydown', keyDownEcs);
+
+
+    function keyDownEcs(event) {
+      if (event.code === 'Escape') {
+        exit();
+      }
+    }
+
+    function exit() {
+      close.removeEventListener('click', exit);
+      window.removeEventListener('keydown', keyDownEcs);
+      Massagebad.classList.remove('popup_open');
+      lastFocus.focus();
+    }
+  })
+})();
+
+//Кнопка наверх
+(function () {
+  function trackScroll() {
+    let scrolled = window.pageYOffset;
+
+    if (scrolled < 1500) {
+      goTopBtn.classList.add('scroll_hidden');
+    }
+    if (scrolled > 1500) {
+      goTopBtn.classList.remove('scroll_hidden');
+    }
+  }
+
+  function backToTop() {
+    let scrollStep = window.pageYOffset / 50;
+    if (window.pageYOffset > 0) {
+      window.scrollBy(0, -(scrollStep));
+      setTimeout(backToTop, 0);
+    }
+  }
+
+  let goTopBtn = document.querySelector('.scroll_js');
+
+  window.addEventListener('scroll', trackScroll);
+  goTopBtn.addEventListener('click', backToTop);
+})();
