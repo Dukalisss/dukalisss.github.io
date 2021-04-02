@@ -31,6 +31,26 @@ const Buttonsend = document.querySelector('.Buttonsend_js');
 const Checkboxsend = document.querySelector('.Checkboxsend_js');
 
 
+//active page
+
+let pageId = document.querySelector("[data-id-page]").getAttribute("data-id-page"),
+  navItem = document.querySelector(`[data-id-nav=${pageId}]`);
+
+if (pageId == navItem.getAttribute("data-id-nav")) {
+  navItem.classList.add("header__link_active");
+}
+
+
+//active page mobile
+
+let pageIdMobile = document.querySelector("[data-id-page]").getAttribute("data-id-page"),
+  navItemMobile = document.querySelector(`[data-id-nav-mobile=${pageIdMobile}]`);
+
+if (pageIdMobile == navItemMobile.getAttribute("data-id-nav-mobile")) {
+  navItemMobile.classList.add("mobile-header__link_active");
+}
+
+
 //buttons
 
 let buttonSingin = document.querySelector(".button-sing-in_js");
@@ -315,26 +335,6 @@ function preloaderCreaterblog() {
     }
   })
 })();
-
-
-//active page
-
-let pageId = document.querySelector("[data-id-page]").getAttribute("data-id-page"),
-  navItem = document.querySelector(`[data-id-nav=${pageId}]`);
-
-if (pageId == navItem.getAttribute("data-id-nav")) {
-  navItem.classList.add("header__link_active");
-}
-
-
-//active page mobile
-
-let pageIdMobile = document.querySelector("[data-id-page]").getAttribute("data-id-page"),
-  navItemMobile = document.querySelector(`[data-id-nav-mobile=${pageIdMobile}]`);
-
-if (pageIdMobile == navItemMobile.getAttribute("data-id-nav-mobile")) {
-  navItemMobile.classList.add("mobile-header__link_active");
-}
 
 
 //mobile-menu
@@ -908,6 +908,7 @@ const swiper = new Swiper('.swiper-container', {
   },
 });
 
+
 // rating
 
 const ratings = {
@@ -1085,4 +1086,5 @@ function sendMessage(event) {
   window.addEventListener('scroll', trackScroll);
   goTopBtn.addEventListener('click', backToTop);
 })();
+
 
