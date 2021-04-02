@@ -326,14 +326,16 @@ if (pageId == navItem.getAttribute("data-id-nav")) {
   navItem.classList.add("header__link_active");
 }
 
+
 //active page mobile
 
 let pageIdMobile = document.querySelector("[data-id-page]").getAttribute("data-id-page"),
-  navItemMobile = document.querySelector(`[m-data-id-nav=${pageIdMobile}]`);
+  navItemMobile = document.querySelector(`[data-id-nav-mobile=${pageIdMobile}]`);
 
-if (pageIdMobile == navItemMobile.getAttribute("m-data-id-nav")) {
+if (pageIdMobile == navItemMobile.getAttribute("data-id-nav-mobile")) {
   navItemMobile.classList.add("mobile-header__link_active");
 }
+
 
 //mobile-menu
 
@@ -348,6 +350,9 @@ headerMobileButton.addEventListener("click", function () {
 mobileCloseButton.addEventListener("click", function () {
   mobileHeader.classList.remove("mobile-header_open");
 });
+
+
+
 
 /* Sing out profile */
 
@@ -440,8 +445,6 @@ function validateSendMessage(data, errors = {}) {
   return errors;
 }
 
-
-
 function getFormData(form, data = {}, type = 'json') {
   if (type === 'json') {
     let inputs = form.querySelectorAll('input');
@@ -498,8 +501,18 @@ function giveInputFeedback(input, error) {
   let message = document.createElement('div');
   message.classList.add("invalidMessage");
   message.innerText = error;
-  input.insertAdjacentElement("afterend", message);
 
+  let nextMessage = input.nextElementSibling;
+  if(nextMessage != null) {
+    return
+  }
+
+  input.insertAdjacentElement("afterend", message);
+  input.addEventListener("input", function handl(event){
+    message.remove();
+    input.removeEventListener("input", handl);
+  })
+  
   input.addEventListener('input', handl);
   return handl;
 }
@@ -1072,3 +1085,4 @@ function sendMessage(event) {
   window.addEventListener('scroll', trackScroll);
   goTopBtn.addEventListener('click', backToTop);
 })();
+

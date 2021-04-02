@@ -45,10 +45,10 @@
             <nav aria-label="Навигация по сайту" class="mobile-header__nav">
                 <ul class="mobile-header__list">
                     <li class="mobile-header__item">
-                        <a href="/" class="mobile-header__link" m-data-id-nav="home">Home</a>
+                        <a href="/" class="mobile-header__link" data-id-nav-mobile="home">Home</a>
                     </li>
                     <li class="mobile-header__item">
-                        <a href="/pages/blog" class="mobile-header__link" m-data-id-nav="blog">My blog</a>
+                        <a href="/pages/blog" class="mobile-header__link" data-id-nav-mobile="blog">My blog</a>
                     </li>
                     <li class="mobile-header__item mobile-SignIn-popup_js">
                       <button type="button" class="mobile-header__link">Sign in</button>
@@ -57,7 +57,7 @@
                       <button type="button" class="mobile-header__link">Register</button>
                     </li>
                     <li class="mobile-header__item mobile-profile_js">
-                      <a href="/pages/profile" class="mobile-header__link" m-data-id-nav="profile">To profile</a>
+                      <a href="/pages/profile" class="mobile-header__link" data-id-nav-mobile="profile">To profile</a>
                     </li>
                     <li class="mobile-header__item mobile-singout_js">
                       <button class="mobile-header__link">Sign out</button>
@@ -75,7 +75,7 @@
     </button>
 </div>
 <div class="popup SignInOpen-popup_js mobile-SignInOpen-popup_js">
-  <form class="popup__form popup__form_signIn" name="signIn" action="">
+  <form class="popup__form popup__form_signIn" name="signIn">
       <label class="popup__lable">
           <span class="popup__text requiared">Email</span>
           <input class="popup__input  email-js" type="email" name="email">
@@ -96,7 +96,7 @@
 
 
 <div class="popup RegisterOpen-popup_js mobile-RegisterOpen-popup_js">
-    <form class="popup__form popup__form_register" name="register" action="">
+    <form class="popup__form popup__form_register" name="register">
         <label class="popup__lable">
             <span class="popup__text requiared">Email</span>
             <input class="popup__input" type="text" name="email">
@@ -170,7 +170,6 @@
                         <input class="views__input hidden hidden_focus" type="radio" name="views" value="100-500">
                         <span class="views__text">100-500</span>
                         <span class="views__box"></span>
-
                     </label>
                     
                     <label class="views__label">
@@ -274,7 +273,7 @@
         </article>
         <button class="scroll scroll_hidden scroll_js" type="button" aria-label="Вверх"></button>
     </main>
-    <footer class="footer container">
+    <footer class="footer footer__background" data-id-nav-footer="blog">
     <div class="footer__inner">
         <span class="footer__title">Contacts</span>
         <span class="footer__description">Want to know more or just chat?
@@ -317,8 +316,7 @@
         <span class="footer__design">Design by <a class="footer__dl" href="/" aria-label="Go to DL Academy" title="DL Academy">DL Academy</a></span>
         <span class="footer__code">Program code from Antonina</span>
     </div>
-</footer>
-    <div class="popup MessageOpen-popup_js">
+</footer>    <div class="popup MessageOpen-popup_js">
     <form class="popup__form popup__form_register MassageForm_js" name="register">
         <fieldset class="popup__box">
             <label class="popup__lable popup__lable_width">
@@ -339,7 +337,7 @@
             </label>
             <label class="popup__lable">
                 <span class="popup__text">What do you want to discuss with me?</span>
-                <textarea class="popup__input popup__input_Message"  maxlength="450" type="textarea" name="message"></textarea>
+                <textarea class="popup__input popup__input_Message" maxlength="450" name="message"></textarea>
             </label>
         </fieldset>
         <label class="popup__lable popup__container">
