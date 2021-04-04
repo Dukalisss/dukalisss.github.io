@@ -13,7 +13,7 @@
     <meta name="description" content="Blog" />
 </head>
 
-<body>
+<body data-id-page="blog">
     <header class="header container">
   <div class="header__box">
     <a class="header__link" href="/" aria-label="Go to Home" title="Home" data-id-nav="home">
@@ -146,7 +146,7 @@
 </header> 
  
 
-    <main data-id-page="blog">
+    <main>
         <section class="blog container">
             <div class="blog__inner-title">
                 <h1 class="blog__title">My blog
@@ -273,7 +273,7 @@
         </article>
         <button class="scroll scroll_hidden scroll_js" type="button" aria-label="Вверх"></button>
     </main>
-    <footer class="footer footer__background" data-id-nav-footer="blog">
+    <footer class="footer footer_background" data-id-nav-footer="blog">
     <div class="footer__inner">
         <span class="footer__title">Contacts</span>
         <span class="footer__description">Want to know more or just chat?
@@ -316,7 +316,8 @@
         <span class="footer__design">Design by <a class="footer__dl" href="/" aria-label="Go to DL Academy" title="DL Academy">DL Academy</a></span>
         <span class="footer__code">Program code from Antonina</span>
     </div>
-</footer>    <div class="popup MessageOpen-popup_js">
+</footer>   
+       <div class="popup MessageOpen-popup_js">
     <form class="popup__form popup__form_register MassageForm_js" name="register">
         <fieldset class="popup__box">
             <label class="popup__lable popup__lable_width">
@@ -345,7 +346,7 @@
             <span class="popup__checkboxText">Clicking on the button, you consent to the processing of your personal data.</span>
             <span class="popup__Checker"></span>
         </label>
-        <button class="popup__button button EmailSend_js button_disabled button-message_js Buttonsend_js" disabled type="submit">Send</button>
+        <button class="popup__button button button_disabled button-message_js Buttonsend_js EmailSend_js" type="submit" disabled >Send</button>
         <button class="popup__close" type="button">
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="2.82861" width="32" height="4" rx="2" transform="rotate(45 2.82861 0)" fill="#828282"/>
