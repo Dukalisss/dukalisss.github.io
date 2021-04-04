@@ -390,9 +390,15 @@ function validateData(data, errors = {}) {
   if (!data.name) {
     errors.name = 'This field is required';
   }
+
+  
   if (!data.surname) {
     errors.surname = 'This field is required';
   }
+  else if (data.surname === data.name) {
+    errors.surname = 'Surname identical to name';
+  }
+
   if (!data.location) {
     errors.location = 'This field is required';
   }
