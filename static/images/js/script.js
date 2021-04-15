@@ -433,6 +433,9 @@ function checkphone(phone) {
   return phone.match(/^(\s*)?(\+)?([-_():=+]?\d[- _():=+]?){10,14}(\s*)?$/);
 }
 
+function checkname(name) {
+  return name.match(/[a-z]/);}
+
 function validateSendMessage(data, errors = {}) {
 
   if (!checkEmail(data.email)) {
@@ -441,8 +444,12 @@ function validateSendMessage(data, errors = {}) {
 
   if (!checkphone(data.phone)) {
     errors.phone = 'This field is required';
-
   }
+
+  if (!checkname(data.name)) {
+    errors.name = 'Введите правильное имя';
+  }
+
   if (!data.name) {
     errors.name = 'This field is required';
   }
@@ -804,9 +811,6 @@ function sendMessage(event) {
 })();
 
  
-
-
-
 //fetch
 
 function fetchData({ method = 'GET', url = '', body = null, headers = {} }) {
@@ -817,7 +821,7 @@ function fetchData({ method = 'GET', url = '', body = null, headers = {} }) {
   })
 }
 
-//checkbox
+//checkbox blog
 
 function setValueToForm(form, data) {
   let inputs = form.querySelectorAll('input');
@@ -832,7 +836,6 @@ function setValueToForm(form, data) {
         if (data[input.name] && data[input.name].includes(input.value)) {
           input.checked = true;
         }
-
         break;
       default:
         if (data[input.name])
@@ -843,6 +846,8 @@ function setValueToForm(form, data) {
 
   return data;
 }
+
+// согласие с правилами
 
 function isDisabled(elem, button) {
   if (elem.checked) {
@@ -905,6 +910,32 @@ function isDisabled(elem, button) {
   })
 })();
 
+ //Кнопка наверх
+ (function () {
+  function trackScroll() {
+    let scrolled = window.pageYOffset;
+
+    if (scrolled < 1500) {
+      goTopBtn.classList.add('scroll_hidden');
+    }
+    if (scrolled > 1500) {
+      goTopBtn.classList.remove('scroll_hidden');
+    }
+  }
+
+  function backToTop() {
+    let scrollStep = window.pageYOffset / 50;
+    if (window.pageYOffset > 0) {
+      window.scrollBy(0, -(scrollStep));
+      setTimeout(backToTop, 0);
+    }
+  }
+
+  let goTopBtn = document.querySelector('.scroll_js');
+
+  window.addEventListener('scroll', trackScroll);
+  goTopBtn.addEventListener('click', backToTop);
+})(); 
 //slider
 
 function slider(selectorStr) {
@@ -1072,7 +1103,6 @@ function getRatings() {
     document.querySelector(`.${rating} .skills__value`).innerHTML = ratings[rating];
   }
 };
-
 
 
  
